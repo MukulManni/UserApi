@@ -149,7 +149,7 @@ func connectDB(dbURL string) (*sql.DB, error) {
 
 	_, err = db.Exec(`
     	CREATE TABLE IF NOT EXISTS users (
-		id SERIAL PRIMARY KEY;
+		id SERIAL PRIMARY KEY,
 		name VARCHAR(20),
 	  	dob VARCHAR(11),
 	  	address VARCHAR(50),
