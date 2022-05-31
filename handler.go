@@ -62,7 +62,7 @@ func createUser(c *gin.Context) {
 		userList = append(userList, user)
 
 		db.QueryRow(
-			`INSERT INTO users (name, dob, address, description, createdAt) VALUES ($1,$2,$3,$4,$5)`,
+			`INSERT INTO users (name, dob, address, description, createdat) VALUES ($1,$2,$3,$4,$5)`,
 			user.Name, user.Dob, user.Address, user.Description, user.CreatedAt,
 		)
 
@@ -154,7 +154,7 @@ func connectDB(dbURL string) (*sql.DB, error) {
 	  	dob VARCHAR(11),
 	  	address VARCHAR(50),
 	  	description VARCHAR(100),
-      	createdAt VARCHAR(15)
+      	createdat VARCHAR(15)
     	);
   `)
 
