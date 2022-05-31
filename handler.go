@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 	"net/http"
 	"strconv"
 	"time"
@@ -61,10 +62,20 @@ func createUser(c *gin.Context) {
 	if err := c.BindJSON(&user); err == nil {
 		userList = append(userList, user)
 
-		db.QueryRow(
+		var tuser User
+
+		row := db.QueryRow(
 			`INSERT INTO users (name,dob,address,description,createdat) VALUES ($1,$2,$3,$4,$5)`,
 			user.Name, user.Dob, user.Address, user.Description, user.CreatedAt,
 		)
+
+		row.Scan(&tuser.Name, &tuser.Dob, &tuser.Address, &tuser.Description, &tuser.CreatedAt)
+
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		fmt.Println(tuser)
 
 		c.IndentedJSON(http.StatusCreated, gin.H{
 			"User":   user,
