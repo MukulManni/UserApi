@@ -114,7 +114,7 @@ func updateUser(c *gin.Context) {
 
 				row := db.QueryRow(
 					`UPDATE users SET name=$1,address=$2,dob=$3,description=$4 WHERE id = $5 RETURNING id;`,
-					u.Name, u.Address, u.Dob, u.Description, u.Id,
+					userList[i].Name, userList[i].Address, userList[i].Dob, userList[i].Description, userList[i].Id,
 				)
 				var ID int
 				err := row.Scan(&ID)
