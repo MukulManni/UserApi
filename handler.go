@@ -112,10 +112,14 @@ func updateUser(c *gin.Context) {
 					userList[i].CreatedAt = user.CreatedAt
 				}
 
-				db.QueryRow(
-					`UPDATE users SET name = '$1',address = '$2', dob = '$3', description = '$4' WHERE id = $5 RETURNING *;`,
+				row := db.QueryRow(
+					`UPDATE users SET name = '$1',address = '$2', dob = '$3', description = '$4' WHERE id = $5 RETURNING id;`,
 					u.Name, u.Address, u.Dob, u.Description, u.Id,
 				)
+				var ID int
+				err := row.Scan(&ID)
+
+				fmt.Println(err)
 
 				c.IndentedJSON(
 					http.StatusOK,
