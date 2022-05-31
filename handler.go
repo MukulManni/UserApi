@@ -69,7 +69,7 @@ func createUser(c *gin.Context) {
 			user.Name, user.Dob, user.Address, user.Description, user.CreatedAt,
 		)
 
-		row.Scan(&tuser.Name, &tuser.Dob, &tuser.Address, &tuser.Description, &tuser.CreatedAt)
+		row.Scan(&tuser.Id, &tuser.Name, &tuser.Dob, &tuser.Address, &tuser.Description, &tuser.CreatedAt)
 
 		if err != nil {
 			fmt.Println(err)
