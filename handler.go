@@ -165,7 +165,7 @@ func connectDB(dbURL string) (*sql.DB, error) {
 	  	dob VARCHAR(11),
 	  	address VARCHAR(50),
 	  	description VARCHAR(100),
-      	createdat VARCHAR(30)
+      	createdat text
     	);
   `)
 
