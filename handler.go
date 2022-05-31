@@ -65,7 +65,7 @@ func createUser(c *gin.Context) {
 		var tuser User
 
 		row := db.QueryRow(
-			`INSERT INTO users (name,dob,address,description,createdat) VALUES ($1,$2,$3,$4,$5) RETURNING name, dob, address, description, createdat`,
+			`INSERT INTO users (name,dob,address,description,createdat) VALUES ($1,$2,$3,$4,$5) RETURNING name, dob, address, description, createdat;`,
 			user.Name, user.Dob, user.Address, user.Description, user.CreatedAt,
 		)
 
