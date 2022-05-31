@@ -113,9 +113,8 @@ func updateUser(c *gin.Context) {
 				}
 
 				db.QueryRow(
-					`UPDATE users
-					SET name = $1,address = $2, dob = $3, description = $4 
-					WHERE id = $5;`, u.Name, u.Address, u.Dob, u.Description, u.Id,
+					`UPDATE users SET name = '$1',address = '$2', dob = '$3', description = '$4' WHERE id = $5 RETURNING *;`,
+					u.Name, u.Address, u.Dob, u.Description, u.Id,
 				)
 
 				c.IndentedJSON(
