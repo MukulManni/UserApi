@@ -93,9 +93,6 @@ func updateUser(c *gin.Context) {
 	if err := c.BindJSON(&user); err == nil {
 		for i, u := range userList {
 			if strconv.Itoa(u.Id) == ID {
-				if user.Id != 0 {
-					userList[i].Id = user.Id
-				}
 				if user.Name != "" {
 					userList[i].Name = user.Name
 				}
