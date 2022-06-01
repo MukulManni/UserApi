@@ -11,6 +11,25 @@ import (
 	_ "github.com/lib/pq"
 )
 
+// mainPage() => Handler for MainPage requests
+
+func mainPage(c *gin.Context) {
+
+	//Return api instructions in json format
+	c.IndentedJSON(
+		http.StatusOK,
+		gin.H{
+			"Message":     "User Api Main Page",
+			"Description": "Please visit https://github.com/MukulManni/UserApi for detailed description of this api",
+
+			"GetUser":    "/get/:id",
+			"CreateUser": "/create",
+			"UpdateUser": "/update/:id",
+			"DeleteUser": "/delete/:id",
+		},
+	)
+}
+
 // getUser() => Handler for the get request for getting user data
 
 func getUser(c *gin.Context) {
